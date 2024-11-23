@@ -1,0 +1,9 @@
+{
+  "name": "lynxhub_extensions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "move": "node index.js"
+  }
+}
