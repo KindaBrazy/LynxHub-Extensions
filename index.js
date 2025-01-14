@@ -1,12 +1,12 @@
-import * as path from "node:path";
-import * as fs from "node:fs";
+import {dirname, join} from "node:path";
+import {writeFileSync, readFileSync} from "node:fs";
 import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
-const moduleJsonPath = path.join(__dirname, 'modules.json');
-const moduleJson = JSON.parse(fs.readFileSync(moduleJsonPath, 'utf8'));
+const moduleJsonPath = join(__dirname, 'extensions.json');
+const moduleJson = JSON.parse(readFileSync(moduleJsonPath, 'utf8'));
 
 async function fetchJson(url) {
     const response = await fetch(url);
@@ -24,5 +24,5 @@ for (const moduleUrl of moduleJson) {
     }
 }
 
-const compiledPath = path.join(__dirname, '..', 'Compiled', 'container.json');
-fs.writeFileSync(compiledPath, JSON.stringify(containers, null, 2));
+const compiledPath = join(__dirname, '..', 'Compiled', 'container.json');
+writeFileSync(compiledPath, JSON.stringify(containers, null, 2));
